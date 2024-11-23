@@ -11,8 +11,7 @@
         <!-- Section audio -->
         <div class="audio-section">
             <h1>Bienvenue sur mon terminal</h1>
-            <p id="audio-filename">Chargement du fichier audio...</p>
-            <audio controls id="audio-player">
+            <audio id="audio-player" autoplay loop>
                 <source id="audio-source" type="audio/mp3">
                 Votre navigateur ne supporte pas le format audio.
             </audio>
@@ -33,17 +32,16 @@
     <script>
         // Fonction pour charger le fichier audio automatiquement
         window.onload = function() {
-            // Ici, on suppose qu'il y a un seul fichier audio dans le dossier
             const audioPlayer = document.getElementById('audio-player');
             const audioSource = document.getElementById('audio-source');
-            const audioFilenameDisplay = document.getElementById('audio-filename');
             
-            // Récupérer le nom du fichier dans le même dossier que la page HTML
-            const audioFiles = ["https://JonnyLeVrai.github.io/Jonny_le_vrai/DAN DA DAN - Opening  Otonoke by Creepy Nuts.mp3"]; // Liste de fichiers audio
-            const audioFile = audioFiles[0]; // Sélection du premier fichier
+            // Liste de fichiers audio dans le même dossier
+            const audioFiles = ["https://JonnyLeVrai.github.io/Jonny_le_vrai/DAN DA DAN - Opening  Otonoke by Creepy Nuts.mp3"]; // Remplace par le nom de ton fichier audio
+            const audioFile = audioFiles[0]; // Sélection du premier fichier audio
+
+            // Appliquer la source du fichier audio au lecteur
             audioSource.src = audioFile;
             audioPlayer.load();  // Recharge le lecteur avec la nouvelle source
-            audioFilenameDisplay.textContent = `Lecture du fichier : ${audioFile}`;  // Affiche le nom du fichier
         }
     </script>
 </body>
