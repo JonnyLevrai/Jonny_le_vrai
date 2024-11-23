@@ -1,121 +1,51 @@
-/* Définition des styles globaux */
-* {
+body, html {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    overflow: hidden;
+    height: 100%;
+    background-color: black;
+    font-family: Arial, sans-serif;
+    color: white;
 }
 
-body {
-    background-color: #000000;
-    color: #00FF00; /* Vert fluo pour l'effet hacker */
-    font-family: 'Courier New', Courier, monospace; /* Police de style terminal */
-    line-height: 1.6;
-    font-size: 16px;
+.intro-page {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     text-align: center;
 }
 
-h1, h2 {
-    font-size: 2rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 20px;
-    text-shadow: 0 0 10px #00FF00, 0 0 20px #00FF00, 0 0 30px #00FF00; /* Effet néon */
-}
-
-h2 {
-    font-size: 1.5rem;
-    margin-top: 20px;
-}
-
-.container {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-.audio-section {
-    background-color: rgba(0, 0, 0, 0.8); /* Fond semi-transparent pour le lecteur audio */
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px #00FF00;
-    margin-bottom: 40px;
-}
-
-audio {
-    width: 80%;
-    max-width: 600px;
-    border: none;
-    outline: none;
-    background-color: #333;
-    color: #00FF00;
-    padding: 10px;
-    border-radius: 5px;
-}
-
-audio::-webkit-media-controls-panel {
-    background-color: #111 !important; /* Couleur de fond des contrôles */
-}
-
-.social-section {
-    background-color: #222;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px #00FF00;
-}
-
-.social-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-}
-
-.social-button {
-    display: inline-block;
+button {
     padding: 10px 20px;
-    font-size: 1.2rem;
-    color: #00FF00;
-    text-decoration: none;
-    border: 2px solid #00FF00;
-    border-radius: 5px;
-    transition: 0.3s ease;
-    text-transform: uppercase;
+    font-size: 16px;
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
 }
 
-.social-button:hover {
-    background-color: #00FF00;
-    color: #000;
-    text-shadow: 0 0 10px #000, 0 0 20px #000;
+button:hover {
+    background-color: #555;
 }
 
-.social-button.facebook {
-    background-color: #3b5998;
-    border-color: #3b5998;
+#networkCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
-.social-button.instagram {
-    background-color: #e1306c;
-    border-color: #e1306c;
+.bap-window {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
 }
 
-.social-button.twitter {
-    background-color: #1DA1F2;
-    border-color: #1DA1F2;
-}
-
-.social-button.linkedin {
-    background-color: #0077b5;
-    border-color: #0077b5;
-}
-
-/* Animation de type "text scanner" */
-@keyframes scan {
-    0% { text-shadow: 0 0 5px #00FF00, 0 0 10px #00FF00, 0 0 15px #00FF00; }
-    50% { text-shadow: 0 0 5px #FF0000, 0 0 10px #FF0000, 0 0 15px #FF0000; }
-    100% { text-shadow: 0 0 5px #00FF00, 0 0 10px #00FF00, 0 0 15px #00FF00; }
-}
-
-/* Animation sur les titres */
-h1, h2 {
-    animation: scan 1.5s infinite alternate;
+.sound-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    cursor: pointer;
 }
