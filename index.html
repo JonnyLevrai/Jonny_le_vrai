@@ -11,9 +11,8 @@
         <!-- Section audio -->
         <div class="audio-section">
             <h1>Bienvenue sur mon terminal</h1>
-            <p>Cliquez ici pour commencer la musique</p>
-            <!-- Lecture automatique désactivée, démarrage sur clic -->
-            <audio id="audio-player" loop>
+            <!-- Lecture automatique du son, en mode mute -->
+            <audio id="audio-player" autoplay loop muted>
                 <source id="audio-source" type="audio/mp3">
                 Votre navigateur ne supporte pas le format audio.
             </audio>
@@ -35,16 +34,20 @@
         window.onload = function() {
             const audioPlayer = document.getElementById('audio-player');
             const audioSource = document.getElementById('audio-source');
-
+            
             // Définir le fichier audio
-            const audioFile = "https://JonnyLeVrai.github.io/Jonny_le_vrai/DAN DA DAN - Opening  Otonoke by Creepy Nuts.mp3"; // Remplacez par le nom de votre fichier audio réel
+            const audioFile = "https://JonnyLeVrai.github.io/Jonny_le_vrai/DAN DA DAN - Opening  Otonoke by Creepy Nuts.mp3"; // Remplace par ton fichier audio
             audioSource.src = audioFile;
 
-            // Ajouter un événement de clic pour démarrer la musique
-            document.body.addEventListener('click', function() {
-                audioPlayer.play();  // Lancer la musique
-                document.body.removeEventListener('click', arguments.callee);  // Retirer l'événement après le premier clic
-            });
+            // Permettre de retirer le mute après quelques secondes (pour contourner l'autoplay block)
+            audioPlayer.oncanplaythrough = function() {
+                // Enlever le mute après que l'audio est prêt à être joué
+                audioPlayer.muted = false;
+            };
+
+            // Charger et lire la musique
+            audioPlayer.load();
+            audioPlayer.play();
         }
     </script>
 </body>
