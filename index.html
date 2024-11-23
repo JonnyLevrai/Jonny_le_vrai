@@ -1,38 +1,364 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page Hacker</title>
-    <link rel="stylesheet" href="style.css">
+    <title>N2K x jonnyYuqii BAP</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: #000;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: lime;
+            position: relative;
+        }
+
+        canvas {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        #soundButton {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 50px;
+            height: 50px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border: 2px solid lime;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        #soundButton img {
+            width: 30px;
+            height: 30px;
+        }
+
+        /* Intro page */
+        #introPage {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: lime;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            font-size: 48px;
+            text-align: center;
+            z-index: 9999;
+        }
+
+        #mainTitle {
+            font-size: 72px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        #subTitle {
+            font-size: 36px;
+            margin-bottom: 40px;
+        }
+
+        #introPage p {
+            margin: 20px 0;
+        }
+
+        #introPage button {
+            background-color: lime;
+            color: black;
+            border: none;
+            padding: 10px 20px;
+            font-size: 24px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        #introPage button:hover {
+            background-color: #00cc00;
+        }
+
+        /* Window for BAP description */
+        #bapWindow {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); /* Center the window */
+            width: 80%; /* Make the window width responsive */
+            max-width: 600px; /* Limit maximum width */
+            background-color: rgba(0, 0, 0, 0.9);
+            border: 2px solid lime;
+            border-radius: 10px;
+            padding: 20px;
+            color: lime;
+            z-index: 10000;
+            font-size: 18px;
+            text-align: center;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: auto; /* Adjust height based on content */
+            overflow: visible; /* Ensure no scrolling */
+            box-sizing: border-box; /* Ensures padding is included in width calculation */
+        }
+
+        #bapWindow h2 {
+            margin-top: 0;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        #bapWindow p {
+            margin: 20px 0;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        #bapWindow button {
+            background-color: lime;
+            color: black;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        #bapWindow button:hover {
+            background-color: #00cc00;
+        }
+
+        /* Media queries for smaller screens */
+        @media screen and (max-width: 768px) {
+            #introPage {
+                font-size: 36px; /* Smaller font for smaller screens */
+            }
+
+            #bapWindow {
+                width: 90%; /* Make the window take up 90% of the screen width */
+                padding: 15px; /* Reduce padding for smaller screens */
+            }
+
+            #bapWindow h2 {
+                font-size: 24px; /* Adjust heading size */
+            }
+
+            #bapWindow p {
+                font-size: 16px; /* Adjust paragraph size */
+            }
+
+            #introPage button {
+                font-size: 20px; /* Reduce button size */
+            }
+        }
+
+        /* For even smaller screens (e.g., mobile phones) */
+        @media screen and (max-width: 480px) {
+            #introPage {
+                font-size: 24px; /* Further reduce font size for phones */
+            }
+
+            #bapWindow {
+                width: 95%; /* Take up most of the screen on small devices */
+                padding: 10px; /* Further reduce padding */
+            }
+
+            #bapWindow h2 {
+                font-size: 20px; /* Adjust heading size */
+            }
+
+            #bapWindow p {
+                font-size: 14px; /* Smaller text for smaller screens */
+            }
+
+            #introPage button {
+                font-size: 18px; /* Make the button text smaller */
+            }
+        }
+
+        /* Footer */
+        #footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: lime;
+            text-align: center;
+            padding: 10px 0;
+            font-size: 18px;
+            z-index: 99999;
+        }
+
+        #footer a {
+            color: lime;
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
-    <!-- Page d'introduction -->
-    <div id="introPage" class="intro-page">
-        <h1>Bienvenue dans le terminal</h1>
-        <button id="enterButton">Enter</button>
+    <!-- Intro page with title and subtitle -->
+    <div id="introPage">
+        <div id="mainTitle">N2K x jonnyYuqii BAP</div>
+        <div id="subTitle">(Brigade Anti-Pédophilie)</div>
+        <p>VOUS ÊTES SUR LE POINT D'ENTRER SUR LA PAGE DE LA BAP DE N2K x jonnyYuqii</p>
+        <button id="enterButton">Entrer</button>
     </div>
 
-    <!-- Canvas pour animation -->
-    <canvas id="networkCanvas"></canvas>
-
-    <!-- Fenêtre BAP (peut être ajustée selon ton besoin) -->
-    <div id="bapWindow" class="bap-window" style="display: none;">
-        <h2>Réjoignez-nous sur Discord</h2>
-        <button id="joinButton">Join Discord</button>
+    <canvas id="networkCanvas" style="display: none;"></canvas>
+    <div id="soundButton" style="display: none;">
+        <img id="soundIcon" src="sound.png" alt="Sound">
     </div>
 
-    <!-- Bouton de son -->
-    <div id="soundButton" class="sound-button" style="display: none;">
-        <img id="soundIcon" src="sound.png" alt="Sound Icon">
+    <!-- BAP Description Window -->
+    <div id="bapWindow">
+        <h2>Notre Mission : Protéger les Enfants</h2>
+        <p>
+            Bienvenue sur la plateforme N2K x JonnyYuqii. Nous sommes une communauté dévouée, unissant nos forces pour lutter contre les comportements prédateurs en ligne et protéger les enfants. 
+            nous agissons chaque jour pour créer un monde plus sûr.
+            <br><br>
+            Chaque membre de la BAP joue un rôle essentiel : sensibiliser les familles, signaler les abus aux autorités compétentes et contribuer à des campagnes éducatives. 
+            Grâce à notre réseau grandissant, nous avons déjà pu intervenir dans des situations critiques.
+            <br><br>
+            Rejoindre la BAP, c’est s’impliquer dans une mission noble et courageuse. Nous croyons en la force collective pour réduire les risques auxquels les enfants sont exposés.
+            nous développons des outils concrets pour surveiller et signaler les activités suspectes, tout en accompagnant les victimes et leurs familles.
+            <br><br>
+            Nous avons besoin de vous pour continuer ce combat. Que vous souhaitiez contribuer à notre réseau de veille ou simplement soutenir nos actions, chaque geste compte. Ensemble, nous pouvons changer les choses.
+        </p>
+        <button id="joinButton">Rejoignez-nous</button>
     </div>
 
-    <!-- Musique de fond -->
+    <!-- Audio -->
     <audio id="backgroundMusic" loop>
-        <source src="https://JonnyLeVrai.github.io/Jonny_le_vrai/DAN DA DAN - Opening  Otonoke by Creepy Nuts.mp3" type="audio/mp3">
-        Votre navigateur ne supporte pas le format audio.
+        <source src="html://JonnyLeVrai.github.io/Jonny_le_vrai/DAN DA DAN - Opening  Otonoke by Creepy Nuts.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
     </audio>
 
-    <script src="script.js"></script>
+    <!-- Footer -->
+    <div id="footer">
+        © ռ2ӄ x JonnyYuqii 2024 - All rights reserved.
+    </div>
+
+    <script>
+        const canvas = document.getElementById('networkCanvas');
+        const ctx = canvas.getContext('2d');
+        const soundButton = document.getElementById('soundButton');
+        const soundIcon = document.getElementById('soundIcon');
+        const backgroundMusic = document.getElementById('backgroundMusic');
+        const introPage = document.getElementById('introPage');
+        const enterButton = document.getElementById('enterButton');
+        const bapWindow = document.getElementById('bapWindow');
+        const joinButton = document.getElementById('joinButton');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        // Sound variables
+        let isSoundOn = true;
+
+        const startMusic = () => {
+            introPage.style.display = 'none'; // Hide intro page
+            canvas.style.display = 'block'; // Show canvas for animation
+            bapWindow.style.display = 'block'; // Show BAP window
+            soundButton.style.display = 'flex'; // Show sound button
+            backgroundMusic.volume = 0.5;
+            backgroundMusic.play().catch(error => console.log("Error playing music:", error));
+            animate();
+        };
+
+        enterButton.addEventListener('click', startMusic);
+
+        joinButton.addEventListener('click', () => {
+            window.location.href = "https://discord.gg/"; // Replace with actual link
+        });
+
+        const toggleSound = () => {
+            if (isSoundOn) {
+                backgroundMusic.pause();
+                soundIcon.src = 'soundoff.png';
+            } else {
+                backgroundMusic.play();
+                soundIcon.src = 'sound.png';
+            }
+            isSoundOn = !isSoundOn;
+        };
+
+        soundButton.addEventListener('click', toggleSound);
+
+        const nodes = [];
+        const numNodes = 150;
+
+        class Node {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.vx = (Math.random() - 0.5) * 2;
+                this.vy = (Math.random() - 0.5) * 2;
+                this.radius = 3 + Math.random() * 3;
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = 'lime';
+                ctx.fill();
+                ctx.closePath();
+            }
+        }
+
+        for (let i = 0; i < numNodes; i++) {
+            nodes.push(new Node(Math.random() * canvas.width, Math.random() * canvas.height));
+        }
+
+        function drawConnections() {
+            for (let i = 0; i < nodes.length; i++) {
+                for (let j = i + 1; j < nodes.length; j++) {
+                    const dist = Math.sqrt((nodes[i].x - nodes[j].x) ** 2 + (nodes[i].y - nodes[j].y) ** 2);
+                    if (dist < 100) {
+                        ctx.beginPath();
+                        ctx.moveTo(nodes[i].x, nodes[i].y);
+                        ctx.lineTo(nodes[j].x, nodes[j].y);
+                        ctx.strokeStyle = 'lime';
+                        ctx.lineWidth = 0.5;
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let node of nodes) {
+                node.update();
+                node.draw();
+            }
+            drawConnections();
+            requestAnimationFrame(animate);
+        }
+    </script>
 </body>
 </html>
